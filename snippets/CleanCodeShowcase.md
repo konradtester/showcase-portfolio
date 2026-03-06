@@ -73,7 +73,7 @@ class AgentState(TypedDict):
 def retrieve_context(state: AgentState):
     """Node: Semantic Retrieval from Vector Database."""
     # Custom business logic layer for Qdrant/Vector search
-    # Zastrzegasz: "Tu zintegrowany jest autorski moduł retrievalu semantycznego"
+    # Integration of proprietary semantic retrieval module
     return {"context_data": ["Retrieved accurate context..."]}
 
 def validate_response(state: AgentState) -> Literal["generate", "human_intervention"]:
