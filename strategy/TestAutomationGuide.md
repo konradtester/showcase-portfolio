@@ -12,13 +12,19 @@ Ideal for teams prioritizing BDD (Behavior Driven Development) and long-term mai
 
 ```text
 src/
+├── main/
+│   ├── java/
+│   │   ├── operations.projects/
+│   │   │   ├── runners/             # TestNG or JUnit Runners
+│   │   │   ├── pages/               # Page Object Model (POM)
+│   │   │   ├── gateways/            # API/External service gateways
+│   │   │   ├── generators/          # Generatvice functions
+│   │   │   ├── workflows/           # AI features
 ├── test/
 │   ├── java/
-│   │   ├── com.company.project/
-│   │   │   ├── runners/             # TestNG or JUnit Runners
+│   │   ├── tested.project/
 │   │   │   ├── steps/               # Glue code/Step Definitions
 │   │   │   ├── hooks/               # Browser setup, screenshots, teardown
-│   │   │   └── pages/               # Page Object Model (POM)
 │   ├── resources/
 │   │   └── features/                # Gherkin .feature files
 pom.xml                              # Dependency management (Maven)
