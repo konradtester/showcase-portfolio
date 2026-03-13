@@ -1,3 +1,4 @@
+
 # Test Automation Strategy | SDET Showcase
 
 This document outlines professional approaches to Test Automation using **Playwright**, covering various tech stacks and CI/CD integration patterns.
@@ -125,6 +126,68 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: always()
         with: { name: playwright-report, path: playwright-report/ }
+```
+
+---
+
+## 4. TypeScript + Playwright Smoke Tests (CI-Ready)
+
+Lightweight smoke tests optimized for rapid feedback in dev/staging environments. Integrates seamlessly with merge pipelines.
+
+### Project Structure
+
+```text
+tests/
+├── smoke/                  # Smoke test scenarios
+├── pages/                  # Page Object Model
+├── fixtures/               # Test data & helpers
+├── config/                 # Environment configuration
+playwright.config.ts        # Global configuration
+package.json                # Dependencies & scripts
+```
+
+### CI/CD Pipeline (`.github/workflows/smoke-tests.yml`)
+
+```yaml
+name: Smoke Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+  pull_request:
+    branches: [develop, main]
+
+jobs:
+  smoke-tests:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.40.0-jammy
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run Smoke Tests
+        run: npx playwright test tests/smoke
+        env:
+          BASE_URL: ${{ inputs.environment == 'staging' && 'https://staging.app.com' || 'https://dev.app.com' }}
+      
+      - name: Upload Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
 ```
 
 ---
