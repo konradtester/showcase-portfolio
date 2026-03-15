@@ -13,10 +13,11 @@ Welcome to my technical portfolio. This repository highlights my expertise in bu
 
 High-level overview of complex systems I've architected and maintained:
 
-- **[EventCore AI](./projects/EventCore_AI.md)**: Real-time event management platform with advanced RAG implementation.
-- **[SafeGuard AI](./projects/SafeGuard_AI.md)**: Enterprise safety and emergency management system with critical RBAC protocols.
-- **[EduStream AI](./projects/EduStream_AI.md)**: Intelligent lecture simplification tool leveraging LLMs and STT.
-
+- **[EventCore AI-powered](./projects/EventCore_AI.md)**: Real-time event management platform with advanced RAG implementation.
+- **[SafeGuard AI-powered](./projects/SafeGuard_AI.md)**: Enterprise safety and emergency management system with critical RBAC protocols.
+- **[EduStream AI-powered](./projects/EduStream_AI.md)**: Intelligent lecture simplification tool leveraging LLMs and STT.
+- **[PageBuilder](./projects/PageBuilder.md)**: Light version of page builder for ecommerce compated to complex systems like WP-Elementor. 
+  
 ### [💻 Code Snippets](./snippets)
 
 Proof-of-style snippets demonstrating:
