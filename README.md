@@ -16,14 +16,16 @@ High-level overview of complex systems I've architected and maintained:
 - **[EventCore AI-powered](./projects/EventCore_AI.md)**: Real-time event management platform with advanced RAG implementation.
 - **[SafeGuard AI-powered](./projects/SafeGuard_AI.md)**: Enterprise safety and emergency management system with critical RBAC protocols.
 - **[EduStream AI-powered](./projects/EduStream_AI.md)**: Intelligent lecture simplification tool leveraging LLMs and STT.
-- **[PageBuilder](./projects/PageBuilder.md)**: Light version of page builder for ecommerce compated to complex systems like WP-Elementor. 
+- **[PageBuilder](./projects/PageBuilder.md)**: Light version of page builder for ecommerce compated to complex systems like WP-Elementor.
+- **[AI-assisted Job Dashoard](./projects/AIJobBoard.md)**: AI-First Job Platform with CV Matching.  
   
 ### [💻 Code Snippets](./snippets)
 
 Proof-of-style snippets demonstrating:
 
-- **FastAPI**: Dependency Injection, Pydantic validation, and service-oriented architecture.
-- **LangChain/LangGraph**: Orchestration of self-correcting AI agents.
+- LangGraph Agent — Safe / Sensitive Tool Split with HITL
+- Tool Design — Environment-Aware with `_resolve_host`
+- Discord Bot — HITL Approval Flow
 
 ### [🏗️ Test Automation Strategy](./strategy)
 
@@ -39,8 +41,8 @@ Comprehensive guides and CI/CD pipeline examples for:
 
 - **Languages**: Python, TypeScript, Java, Dart (Flutter).
 - **Backend**: FastAPI, SQL Alchemy, PostgreSQL, Redis.
-- **Frontend**: Flutter, React.
-- **AI/ML**: LangChain, LangGraph, Qdrant (Vector DB), OpenAI/Gemini APIs.
+- **Frontend**: Flutter, React, Next.js
+- **AI/ML**: LangChain, LangGraph, Qdrant (Vector DB), OpenAI/Gemini APIs, OpenSource Models
 - **DevOps/Testing**: Playwright, CI/CD (GitLab/GitHub), Docker.
 
 ---
