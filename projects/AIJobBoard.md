@@ -82,7 +82,7 @@ graph TD
 - **Frontend**: Next.js, TypeScript, TailwindCSS, Framer Motion.
 - **Backend**: FastAPI, SQLAlchemy ORM, Pydantic.
 - **Database**: PostgreSQL (Structured), Qdrant (Vector), Redis (Cache).
-- **AI/ML**: LangGraph, LangFlow (Prototyping), Sentence-Transformers, HuggingFace.
+- **AI/ML**: LangGraph, Sentence-Transformers, OSS
 - **DevOps**: Docker & Docker Compose, n8n (Automations), LangSmith.
 
 ---
