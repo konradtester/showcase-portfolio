@@ -2,13 +2,13 @@
 
 ## 🚀 Business Overview
 
-The AI Job Board is a MVP high-performance recruitment platform designed to bridge the gap between top-tier talent and innovative companies. By leveraging state-of-the-art Large Language Models (LLMs) and vector search technology, it transforms the traditional job search into a precise, automated, and insights-driven experience.
+The AI Job Board is a production-ready, high-performance recruitment platform designed to bridge the gap between top-tier talent and innovative companies. By leveraging state-of-the-art Large Language Models (LLMs) and vector search technology, it transforms the traditional job search into a precise, automated, and insights-driven experience.
 
 ### Key Value Propositions:
 
-- **Precision Matching**: Uses semantic embeddings to match candidates with jobs based on deep context, not just keywords.
-- **Automated Talent Operations**: Integrated LangGraph agents generate optimized job descriptions and parse complex CVs instantly.
-- **Privacy-First Intelligence**: 100% local embedding and inference pipeline ensuring zero data leakage and zero API recurring costs.
+- **Advanced Structured Matching**: Beyond simple keyword search, our system uses LLMs to parse CVs and Jobs into structured JSON data, allowing for multi-dimensional matching (Skills vs. Requirements, Tools, Experience).
+- **Automated Talent Operations**: Integrated LangGraph agents generate optimized job descriptions and parse complex CVs into structured profiles instantly.
+- **Privacy-First Intelligence**: 100% local embedding and inference pipeline (Ollama + Sentence-Transformers) ensuring zero data leakage and zero API costs.
 - **Enterprise-Grade RBAC**: Fine-grained access control for Candidates, Employers, and Administrators.
 
 ---
@@ -38,6 +38,7 @@ graph TD
 
     subgraph AI_Core_Layer
         SentenceTrans["🧠 Sentence-Transformers (Local Embeddings)"]
+        Ollama["🦙 Ollama (Local LLM Inference)"]
         LangGraph["🤖 LangGraph (Agent Orchestration)"]
         LangSmith["📈 LangSmith (Observability)"]
     end
@@ -49,41 +50,42 @@ graph TD
     FastAPI <--> Redis
     FastAPI <--> Qdrant
     FastAPI <--> SentenceTrans
+    FastAPI <--> Ollama
     FastAPI <--> LangGraph
     LangGraph <--> LangSmith
 ```
 
 ### 🧠 Core AI Workflows
 
-1. **Semantic Match Pipeline**: When a CV is uploaded, the system extracts text and generates a 384-dimensional vector using `all-MiniLM-L6-v2`. This vector is stored in **Qdrant**, allowing for sub-100ms similarity searches against job postings.
-2. **Generative Job Engineering**: Employers can trigger a **LangGraph** agent that researches the role requirements and drafts a professional, SEO-optimized job description tailored to the company's voice.
-3. **Automated ATS Import**: The system can ingest external job URLs, using AI to structure raw HTML into validated database records.
+1. **Structured CV Parsing**: When a PDF CV is uploaded, the system extracts text using `PyPDF2`. A local LLM (Ollama) then structures this raw text into a JSON schema containing `personal_info`, `grouped_skills`, `experience_summary`, and `education`.
+2. **Semantic Match Pipeline**: Text vectors are generated using `all-MiniLM-L6-v2` (384-dim) and stored in **Qdrant**, enabling sub-100ms similarity searches.
+3. **Multi-Agent Matching & Reasoning**: For every application, an AI Agent compares the structured candidate JSON with the structured job JSON to generate a "Rationale" – a human-like explanation of why the candidate is a fit, highlighting overlaps and missing must-haves.
 
 ---
 
 ## 🏗️ Engineering Challenges & Logical Solutions
 
 ### 1. High-Performance, Zero-Cost AI Inference
-**Challenge**: Providing semantic search and text generation without incurring high OpenAI/Anthropic API costs or introducing network latency.
-**Solution**: Implemented a fully local AI stack. We use `sentence-transformers` running natively in the FastAPI worker for embeddings and a local Dockerized Qdrant instance. This results in a "Free-Tier" production environment that is 100% private and extremely fast.
+**Challenge**: Providing semantic search and text generation without incurring high API costs or introducing network latency.
+**Solution**: Implemented a fully local AI stack. We use `sentence-transformers` for embeddings and **Ollama (Llama 3)** for structured parsing and reasoning. This creates a production-grade environment with zero inference costs and 100% data privacy.
 
-### 2. Multi-Role UI Synchronization
-**Challenge**: Managing complex state and permissions across Candidate and Employer dashboards while maintaining a seamless user experience.
-**Solution**: Utilized Next.js Server Components and advanced middleware for Auth/RBAC. The frontend dynamically adapts its layout and data fetching strategy based on the JWT payload, ensuring data isolation and security at the edge.
+### 2. Intelligent Data Structuring from Unstructured PDFs
+**Challenge**: CVs are famously diverse in format, making regex-based parsing unreliable for deep intelligence.
+**Solution**: Developed an LLM-based parser that treats CV text as unstructured input and converts it into a validated Pydantic-style JSON structure. This allows the matching engine to compare "Python" in the Skills section with "Python" in the Job Requirements with 10x higher precision than simple text search.
 
-### 3. Observability in Non-Deterministic AI Flows
+### 3. Observability in Agentic Workflows
 **Challenge**: Debugging AI agent decisions and performance in a production environment.
-**Solution**: Integrated **LangSmith** deep-tracing into every AI-related endpoint. Every embedding call and agent step is logged, allowing for real-time performance monitoring and iterative prompt refinement.
+**Solution**: Integrated **LangSmith** deep-tracing into every AI endpoint. Every LLM call and agent step is logged, allowing us to monitor latency, token usage, and accuracy while iterating on prompts in a "10x Developer" workflow.
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: Next.js, TypeScript, TailwindCSS, Framer Motion.
-- **Backend**: FastAPI, SQLAlchemy ORM, Pydantic.
-- **Database**: PostgreSQL (Structured), Qdrant (Vector), Redis (Cache).
-- **AI/ML**: LangGraph, Sentence-Transformers, OSS
-- **DevOps**: Docker & Docker Compose, n8n (Automations), LangSmith.
+- **Frontend**: Next.js (App Router), TypeScript, TailwindCSS, Framer Motion.
+- **Backend**: FastAPI, SQLAlchemy ORM, Pydantic, PyPDF2.
+- **Database**: PostgreSQL (Relational), Qdrant (Vector Store), Redis (Cache).
+- **AI/ML Core**: Ollama (Local LLM), LangGraph (Agents), Sentence-Transformers.
+- **DevOps/Monitoring**: Docker Compose, LangSmith, n8n (Automations).
 
 ---
 
@@ -97,4 +99,4 @@ The project is currently in a phase of rapid expansion. Upcoming features includ
 ---
 
 > [!NOTE]  
-> This repository is a **Public Showcase** project. It is designed to demonstrate high-level engineering patterns, AI integration strategies, and full-stack architecture. For security reasons, environment variables and proprietary API keys are managed via `.env.template`.
+> This repository is a **Public Showcase** project. It demonstrates high-level engineering patterns, AI integration strategies (RAG, Structured Output), and full-stack architecture.
