@@ -1,4 +1,4 @@
-# SDET & AI Product Engineer | Professional Showcase
+# SDET & AI Product Engineer | AI Engineer Professional Showcase
 
 ## 👋 Introduction
 
