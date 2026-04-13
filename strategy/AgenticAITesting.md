@@ -111,8 +111,36 @@ Our framework is model-agnostic, allowing us to swap the "brain" depending on th
 | :--- | :--- | :--- |
 | **Llama 3.2** | High speed, low latency | Rapid smoke tests & navigation |
 | **Qwen 2.5 Coder** | Superior tool-calling proficiency | Complex logic audits & data verification |
+| **DeepSeek Coder V2** | Deep structural understanding | Complex DOM analysis & exploratory testing |
 | **Mistral Nemo** | Large 128k context window | Auditing dense, multi-page applications |
 
 ---
 
-*This strategy document outlines the cutting-edge testing infrastructure demonstrating a forward-thinking approach to software quality assurance.*
+## 🏗️ Enterprise Stability: From Flakiness to Determinism
+
+Integrating LLMs into automated testing introduces non-determinism. To achieve production-grade stability, we implement several guardrails:
+
+- **Temperature Calibration**: We set `temperature: 0` to ensure the model provides the most probable, consistent response every time, minimizing "creative" hallucinations.
+- **Structured Outputs**: By enforcing JSON schemas (e.g., via Gemini's `response_mime_type: "application/json"`), we guarantee that the AI's output is always machine-readable.
+- **Semantic Retries**: If a goal isn't reached, the agent doesn't just fail; it re-evaluates the accessibility tree and tries an alternative path, simulating a "self-healing" behavior.
+
+---
+
+## ☁️ The Hybrid CI/CD Strategy: Local vs Cloud
+
+A professional Agentic QA suite balances cost and reliability by splitting execution between local and cloud models:
+
+| Environment | Model Strategy | Rationale |
+| :--- | :--- | :--- |
+| **Local Dev** | **Ollama / Llama 3.2** | Zero cost, rapid iteration, data privacy during feature development. |
+| **CI/CD Pipeline** | **Gemini 1.5 / OpenAI** | Maximum stability, handling complex logic audits via API, zero infrastructure overhead for runners. |
+
+### Hybrid Execution & Fallbacks
+We utilize a **Triple-Layer Fallback** mechanism for critical steps:
+1.  **AI Logic**: The agent attempts to reach the goal using semantic reasoning.
+2.  **Semantic Fallback**: If the LLM is unsure, the system falls back to a list of "known semantic patterns" (e.g., searching for any interactive element labeled "Submit").
+3.  **Traditional Locator**: As a final safety net, the test can use a standard CSS/Playwright locator, ensuring the suite remains reliable even if the AI is unavailable.
+
+---
+
+*This strategy document outlines the cutting-edge testing infrastructure, demonstrating a forward-thinking approach to software quality assurance.*
