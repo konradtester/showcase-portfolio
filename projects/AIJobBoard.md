@@ -91,10 +91,7 @@ graph TD
 
 ## 🚧 Status: Active Development
 
-The project is currently in a phase of rapid expansion. Upcoming features include:
-- **Phase 6**: Programmatic SEO system for Google Jobs integration.
-- **Phase 7**: Playwright-based E2E visual regression testing.
-- **Phase 9**: n8n-powered job scraping and automated Slack notifications for matches.
+The project is currently in a phase of rapid expansion. 
 
 ---
 
