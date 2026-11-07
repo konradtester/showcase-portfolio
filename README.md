@@ -17,7 +17,9 @@ High-level overview of complex systems I've architected and maintained:
 - **[SafeGuard AI-powered](./projects/SafeGuard_AI.md)**: Enterprise safety and emergency management system with critical RBAC protocols.
 - **[EduStream AI-powered](./projects/EduStream_AI.md)**: Intelligent lecture simplification tool leveraging LLMs and STT.
 - **[PageBuilder](./projects/PageBuilder.md)**: Light version of page builder for ecommerce compated to complex systems like WP-Elementor.
-- **[AI-assisted Job Dashoard](./projects/AIJobBoard.md)**: AI-First Job Platform with CV Matching.  
+- **[AI-assisted Job Dashoard](./projects/AIJobBoard.md)**: AI-First Job Platform with CV Matching.
+- **[Deterministic Compliance Scanner 1.0](./projects/ComplianceScanner.md)**: Compliance Scanner with deterministic rules and minimal AI support.  
+
   
 ### [💻 Code Snippets](./snippets)
 
