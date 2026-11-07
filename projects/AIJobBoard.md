@@ -89,9 +89,9 @@ graph TD
 
 ---
 
-## 🚧 Status: Active Development
+## 🚧 Status: End of Development
 
-The project is currently in a phase of rapid expansion. 
+The project is currently inactive. Page stays as the history. 
 
 ---
 
