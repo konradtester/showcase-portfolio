@@ -130,7 +130,7 @@ graph TD
 
 The core compliance engine, hybrid agent relay, and multi-phase regulatory scanners are fully implemented, verified, and operational. 
 
-Check this out at: verdisight.ppl
+Check this out at: verdisight.pl
 
 ---
 
